@@ -16,7 +16,8 @@ class SubCategoryController extends Controller
     {
         try{
             $subCategory = $this->subCategory::where('status', 1)->get()->map(function($subCategory){
-                $subCategory->subcategory_thumb_img = config('app.asset_url').'/'.$subCategory->subcategory_thumb_img;
+                $subCategory->subcategory_thumb_img = !empty($subCategory->subcategory_thumb_img) ? config('app.asset_url').'/'.$subCategory->subcategory_thumb_img : null;
+                $subCategory->background = !empty($subCategory->background) ? config('app.asset_url').'/'.$subCategory->background : null;
                 return $subCategory;
             });
             return $this->sendResponse($subCategory, 'get sub-category successfully');

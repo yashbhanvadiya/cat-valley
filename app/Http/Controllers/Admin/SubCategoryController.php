@@ -65,9 +65,26 @@ class SubCategoryController extends Controller
 
                 $addSubCategory->subcategory_thumb_img = 'img/subcategory_thumb_images/'.$thumbImage;
             }
+            // Upload Sub Category Background
+            if($request->hasfile('background')){
+                // Update Sub Category Background
+                if(!empty($addSubCategory) && !empty($request->subcategoryid) && !empty($addSubCategory->background)){
+                    if(file_exists('public/'.$addSubCategory->background)){
+                        unlink('public/'.$addSubCategory->background);
+                    }
+                }
+                $file = $request->file('background');
+                $backgroundImageName = time();
+                $backgroundImageExt = $file->getClientOriginalExtension();
+                $backgroundImage = $backgroundImageName.'.'.$backgroundImageExt;
+                $file->move(public_path('img/subcategory_background_images/'), $backgroundImage);
+
+                $addSubCategory->background = 'img/subcategory_background_images/'.$backgroundImage;
+            }
             
             $addSubCategory->category_id = $request->category_name;
             $addSubCategory->name = $request->name;
+            $addSubCategory->colour = $request->colour;
             $addSubCategory->status = $request->status;
             $addSubCategory->save();
     

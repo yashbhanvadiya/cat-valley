@@ -19,6 +19,9 @@ use App\Models\MediaFavourite;
 use App\Models\MediaViews;
 use App\Models\Trainer;
 use App\Models\TrainerReview;
+use App\Models\Subscription;
+use App\Models\CardDetails;
+use App\Models\Transaction;
 
 class Controller extends BaseController
 {
@@ -89,6 +92,21 @@ class Controller extends BaseController
      */
     public $trainerReview;
 
+    /**
+     * @var Subscription;
+     */
+    public $subscription;
+
+    /**
+     * @var CardDetails;
+     */
+    public $cardDetails;
+
+    /**
+     * @var Transaction;
+     */
+    public $transaction;
+
     // consstruct controller
     public function __construct()
     {
@@ -105,6 +123,9 @@ class Controller extends BaseController
         $this->mediaViews = new MediaViews();
         $this->trainer = new Trainer();
         $this->trainerReview = new TrainerReview();
+        $this->subscription = new Subscription();
+        $this->cardDetails = new CardDetails();
+        $this->transaction = new Transaction();
     }
 
     

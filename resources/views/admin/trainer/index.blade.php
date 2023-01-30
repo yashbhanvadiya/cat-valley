@@ -28,7 +28,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="add-trainer" id="addTrainer" action="{{ route('add-trainer') }}" method="POST">
+                        <form class="add-trainer" id="addTrainer" action="{{ route('add-trainer') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group mb-3">
@@ -43,6 +43,13 @@
                                 <label class="form-label">Email</label>
                                 <div class="input-group input-group-merge">
                                     <input type="text" id="email" name="email" class="form-control" placeholder="Trainer Email">
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Image</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="file" name="image" class="form-control" id="image">
                                 </div>
                             </div>
 

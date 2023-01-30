@@ -10944,3 +10944,6 @@ figure figcaption {
     padding: 20px;
   }
 }
+.login-logo img {
+  max-width: 140px;
+}

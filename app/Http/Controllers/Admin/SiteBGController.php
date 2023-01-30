@@ -66,6 +66,7 @@ class SiteBGController extends Controller
             }
 
             $addSiteBG->name = $request->name;
+            $addSiteBG->colour = $request->colour;
             $addSiteBG->created_by = Auth::user()->id;
             $addSiteBG->save();
     

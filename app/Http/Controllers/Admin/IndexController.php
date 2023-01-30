@@ -74,7 +74,13 @@ class IndexController extends Controller
     public function index()
     {
         try{
-            return view('admin.index');
+            $totalUsers = $this->users::count();
+            $totalCategory = $this->category::count();
+            $totalSubCategory = $this->subCategory::count();
+            $totalTrainer = $this->trainer::count();
+            $totalMedia = $this->media::count();
+            $totalSubscription = $this->subscription::count();
+            return view('admin.index',compact('totalUsers','totalCategory','totalSubCategory','totalTrainer','totalMedia','totalSubscription'));
         }
         catch(Exception $e){
             abort(500);

@@ -43,6 +43,9 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+    'public_key' => 'pk_test_51MRqNJSJwDWno347sc11ybUP10Xit985JwmJar5MMlvWsIkW45hY7UABmpTDRSNQRvbMNtato7C9MHsikoO7a6k9006jFRi6Ou',
+    'secret_key' => 'sk_test_51MRqNJSJwDWno347305yXs24sbddY9gRZGBBtI3lYjY2xwa0O7bIvsmKdZcH2mYtm3v4JOoMlhMkl8zLL6gQDQ6200ge467jBr',
+
     /*
     |--------------------------------------------------------------------------
     | Application URL

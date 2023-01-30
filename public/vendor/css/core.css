@@ -17523,3 +17523,6 @@ table .quotes {
   max-width: 500px;
   white-space: pre-line;
 }
+.login-logo img {
+  max-width: 140px;
+}

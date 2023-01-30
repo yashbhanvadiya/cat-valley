@@ -68,6 +68,10 @@
               <a class="menu-link" href="{{ route('trainer') }}">Trainer</a>
             </li>
 
+            <li class="menu-item {{Request::segment(2) === 'subscription' ? 'active' : ''}}">
+              <a class="menu-link" href="{{ route('subscription') }}">Subscription</a>
+            </li>
+
             {{-- <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>

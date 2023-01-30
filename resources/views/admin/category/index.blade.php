@@ -47,6 +47,20 @@
                             </div>
 
                             <div class="form-group mb-3">
+                                <label class="form-label">Category Background</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="file" name="background" class="form-control" id="background">
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Colour</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="text" id="colour" name="colour" class="form-control" placeholder="#000000">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-3">
                                 <label class="form-label d-block m-0">Status</label>
                                 <div class="form-check form-check-inline mt-2">
                                     <input class="form-check-input" type="radio" name="status" id="active" value="1" checked>
@@ -99,6 +113,7 @@
                     var categoryData = data.data
                     $('#categoryid').val(categoryData.id);
                     $('#name').val(categoryData.name);
+                    $('#colour').val(categoryData.colour);
                     if(categoryData.status == 1){
                         $('#active').prop('checked', true);
                     }else{

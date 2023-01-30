@@ -3,7 +3,9 @@
         <tr>
             <th>No.</th>
             <th>Category Thumbnail</th>
+            <th>Category Background</th>
             <th>Name</th>
+            <th>Colour</th>
             <th>Status</th>
             <th>Action</th>
         </tr>
@@ -20,7 +22,16 @@
                     @endif
                     
                 </td>
+                <td>
+                    @if(file_exists('public/'.$categoryData->background) && $categoryData->background != null)
+                        <img src="{{ asset($categoryData->background) }}" alt="Media Thumbnail">
+                    @else
+                        <img src="{{ asset('img/dummy.jpg') }}">
+                    @endif
+                    
+                </td>
                 <td>{{ $categoryData->name }}</td>
+                <td>{{ $categoryData->colour }}</td>
                 <td>
                     @switch($categoryData->status)
                         @case(1)

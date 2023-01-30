@@ -40,6 +40,13 @@
                             <input type="hidden" name="bg_name" id="sitebgid">
 
                             <div class="form-group mb-3">
+                                <label class="form-label">Colour</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="text" id="colour" name="colour" class="form-control" placeholder="Colour">
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3">
                                 <label class="form-label">Background</label>
                                 <div class="input-group input-group-merge">
                                     <input type="file" name="sitebg_img" class="form-control" id="siteBGImg">
@@ -87,6 +94,7 @@
                     var siteBGData = data.data
                     $('#sitebgid').val(siteBGData.id);
                     $('#name').val(siteBGData.name);
+                    $('#colour').val(siteBGData.colour);
                 }
             },
         });

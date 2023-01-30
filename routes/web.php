@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\QuoteController;
 use App\Http\Controllers\Admin\SiteBGController;
 use App\Http\Controllers\Admin\TrainerController;
+use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\CheckRole;
@@ -105,6 +106,13 @@ Route::prefix('admin')->group(function () {
             Route::post('/trainer/add-trainer', 'addTrainer')->name('add-trainer');
             Route::delete('/trainer/delete-trainer/{id}', 'deleteTrainer')->name('delete-trainer');
             Route::get('/trainer/{id}/edit-trainer', 'editTrainer')->name('edit-trainer');
+        });
+
+        Route::controller(SubscriptionController::class)->group(function () {
+            Route::get('/subscription', 'index')->name('subscription');
+            Route::post('/subscription/add-subscription', 'addSubscription')->name('add-subscription');
+            Route::delete('/subscription/delete-subscription/{id}', 'deleteSubscription')->name('delete-subscription');
+            Route::get('/subscription/{id}/edit-subscription', 'editSubscription')->name('edit-subscription');
         });
         
     });

@@ -41,8 +41,7 @@ class TrainerController extends Controller
 
             return $this->sendResponse($addReviwe, $message);
         }
-        catch(Exception $e)
-        {
+        catch(Exception $e){
             return $this->sendError('something went wrong', 500);
         }
     }
@@ -56,13 +55,13 @@ class TrainerController extends Controller
             $getTrainer = $this->trainer::get();
             $getTrainer = collect($getTrainer)->map(function($query) use($request){
                 $query->trainer_review = $query->getTrainerReview();
+                $query->image = !empty($query->image) ? config('app.asset_url').'/'.$query->image : asset('img/dummy.jpg');
                 return $query;
             });
 
             return $this->sendResponse($getTrainer, 'get trainer successfully');
         }
-        catch(Exception $e)
-        {
+        catch(Exception $e){
             return $this->sendError('something went wrong', 500);
         }
     }

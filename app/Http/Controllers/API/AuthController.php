@@ -141,4 +141,21 @@ class AuthController extends Controller
             return $this->sendError('something went wrong', 500);
         }
     }
+     /**
+     *  Get Profile
+     */
+    public function getProfile()
+    {
+        try{
+            $id = auth()->guard('api')->user()->id;
+            $user = $this->users::where('id', $id)->get()->map(function($user){
+                $user->image = config('app.asset_url').'/'.$user->image;
+                return $user;
+            });
+            return $this->sendResponse($user, 'get profile successfully');
+        }
+        catch(Exception $e){
+            return $this->sendError('something went wrong', 500);
+        }
+    }   
 }

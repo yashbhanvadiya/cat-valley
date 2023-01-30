@@ -40,6 +40,7 @@ class CategoryController extends Controller
     public function addCategory(Request $request)
     {
         try{
+            // return $request;
             $message = "";  
             $addCategory = $this->category;
             $categoryId = $request->categoryid;
@@ -65,6 +66,21 @@ class CategoryController extends Controller
 
                 $addCategory->category_thumb_img = 'img/category_thumb_images/'.$thumbImage;
             }
+            if($request->hasfile('background')){
+                // Update Category Background
+                if(!empty($addCategory) && !empty($request->categoryid) && !empty($addCategory->background)){
+                    if(file_exists('public/'.$addCategory->background)){
+                        unlink('public/'.$addCategory->background);
+                    }
+                }
+                $file = $request->file('background');
+                $backgroundImageName = time();
+                $backgroundImageExt = $file->getClientOriginalExtension();
+                $backgroundImage = $backgroundImageName.'.'.$backgroundImageExt;
+                $file->move(public_path('img/category_background_images/'), $backgroundImage);
+
+                $addCategory->background = 'img/category_background_images/'.$backgroundImage;
+            }
 
             // Disable Sub Category
             if($request->status == 2){
@@ -73,9 +89,10 @@ class CategoryController extends Controller
             }
 
             $addCategory->name = $request->name;
+            $addCategory->colour = $request->colour;
             $addCategory->status = $request->status;
             $addCategory->save();
-    
+            
             return redirect()->back()->with('success', $message);
         }
         catch(Exception $e){

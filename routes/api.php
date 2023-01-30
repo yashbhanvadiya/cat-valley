@@ -12,6 +12,9 @@ use App\Http\Controllers\API\QuoteController;
 use App\Http\Controllers\API\MediaController;
 use App\Http\Controllers\API\SiteBGController;
 use App\Http\Controllers\API\TrainerController;
+use App\Http\Controllers\API\CardDetailsController;
+use App\Http\Controllers\API\TransactionController;
+use App\Http\Controllers\API\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +42,9 @@ Route::middleware('auth:api')->group(function(){
         Route::get('/explore-topic', 'exploreTopic');
     });
 
+    Route::controller(AuthController::class)->group(function() {
+        Route::get('/get-profile', 'getProfile');
+    });
     Route::controller(CategoryController::class)->group(function() {
         Route::get('/get-category', 'getCategory');
     });
@@ -84,5 +90,19 @@ Route::middleware('auth:api')->group(function(){
     Route::controller(TrainerController::class)->group(function() {
         Route::get('/get-trainer', 'getTrainer');
         Route::post('/trainer-review', 'trainerReview');
+    });
+
+    Route::controller(CardDetailsController::class)->group(function() {
+        Route::post('/add-card', 'addCard');
+        Route::get('/get-cards', 'getCards');
+        Route::delete('/delete-card', 'deleteCard');
+    });
+
+    Route::controller(TransactionController::class)->group(function() {
+        Route::post('/create-transaction', 'createTransaction');
+    });
+
+    Route::controller(SubscriptionController::class)->group(function() {
+        Route::get('/get-subscription', 'getSubscription');
     });
 });

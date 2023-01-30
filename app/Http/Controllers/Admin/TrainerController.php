@@ -48,6 +48,22 @@ class TrainerController extends Controller
                 $addTrainer = $this->trainer::find($trainerId);
                 $message = "trainer updated successfully";
             }
+             // Upload Trainer Thumbnail
+            if($request->hasfile('image')){
+                // Update Trainer Thumbnail
+                if(!empty($addTrainer) && !empty($request->trainerid) && !empty($addTrainer->image)){
+                    if(file_exists('public/'.$addTrainer->image)){
+                        unlink('public/'.$addTrainer->image);
+                    }
+                }
+                $file = $request->file('image');
+                $imageName = time();
+                $imageExt = $file->getClientOriginalExtension();
+                $trainerImage = $imageName.'.'.$imageExt;
+                $file->move(public_path('img/trainer_images/'), $trainerImage);
+
+                $addTrainer->image = 'img/trainer_images/'.$trainerImage;
+            }
 
             $addTrainer->name = $request->name;
             $addTrainer->email = $request->email;

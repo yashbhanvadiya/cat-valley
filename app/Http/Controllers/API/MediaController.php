@@ -230,7 +230,15 @@ class MediaController extends Controller
     {
         try{
             $user_id = auth()->guard('api')->user()->id;
-            $getMediaViews = $this->mediaViews::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->get();
+            $getMediaViews = $this->mediaViews::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->groupBy('media_id')->get();
+            $getMediaViews = collect($getMediaViews)->map(function($query) {
+                $test = $query->getMedia;
+                if($test){
+                    $test->media = config('app.asset_url').'/'.$test->media;
+                    $test->media_thumb_img = config('app.asset_url').'/'.$test->media_thumb_img;
+                }
+                return $query;
+            });
             return $this->sendResponse($getMediaViews, 'recent view media get successfully');
         }
         catch(Exception $e){
@@ -245,11 +253,16 @@ class MediaController extends Controller
     {
         try{
             $getRecommendationMedia = $this->mediaViews::select('media_id' ,DB::raw('sum(view_count) as totalViewCount'))->groupBy('media_id')->orderBy('totalViewCount', 'DESC')->pluck('media_id', 'media_id');
-            $getMedia = $this->media::whereIn('id', $getRecommendationMedia)->get();
+            $getMedia = $this->media::whereIn('id', $getRecommendationMedia)->get()->map(function($getMedia){
+                $getMedia->media = config('app.asset_url').'/'.$getMedia->media;
+                $getMedia->media_thumb_img = asset('/').$getMedia->media_thumb_img;
+                return $getMedia;
+            });
+            
             return $this->sendResponse($getMedia, 'recommendation media get successfully');
         }
         catch(Exception $e){
-            return $this->sendError('smothing went wrong', 500);
+            return $this->sendError('something went wrong', 500);
         }
     }
 }

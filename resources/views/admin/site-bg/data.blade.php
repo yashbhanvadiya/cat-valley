@@ -2,8 +2,9 @@
     <thead>
         <tr>
             <th>No.</th>
-            <th>Name</th>
             <th>Image</th>
+            <th>Name</th>
+            <th>Colour</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -20,12 +21,14 @@
                     
                 </td>
                 <td>{{ $siteBGData->name }}</td>
+                <td>{{ $siteBGData->colour }}</td>
                 <td>
                     <div class="action-icon">
                         <button type="button" class="edit-btn editsitebg me-3 p-0" data-bs-toggle="modal" data-bs-target="#siteBGModal" data-id="{{ encrypt($siteBGData->id) }}"><i class="bx bx-edit-alt me-1"></i></button>
                         <a type="button" data-id="{{ encrypt($siteBGData->id) }}" id="deleteSiteBG"><i class="bx bx-trash me-1"></i></a>
                     </div>
                 </td>
+               
             </tr>
         @endforeach
     </tbody>

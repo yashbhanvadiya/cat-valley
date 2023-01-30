@@ -16,7 +16,7 @@ class SiteBGController extends Controller
     {
         try{
             $getSiteBG = SiteBG::get()->map(function($getSiteBG){
-                $getSiteBG->image = config('app.asset_url').'/'.$getSiteBG->image;
+                $getSiteBG->image = !empty($getSiteBG->image) ? config('app.asset_url').'/'.$getSiteBG->image : null;
                 return $getSiteBG;
             });
             return $this->sendResponse($getSiteBG, 'site background get successfully');
